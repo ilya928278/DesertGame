@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private float characterSpeed;
+
+    private Rigidbody2D characterRB;
+    [SerializeField] private Transform joystickHandle;
+
     void Start()
     {
-        
+        characterRB = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Vector2 joystickPosition = new Vector2(joystickHandle.localPosition.x, joystickHandle.localPosition.y);
+        Vector2 normalizedPosition = joystickPosition.normalized;
+        characterRB.velocity = normalizedPosition * characterSpeed;
+        Debug.Log(normalizedPosition);
     }
 }
