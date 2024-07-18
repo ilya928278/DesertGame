@@ -19,6 +19,5 @@ public class CharacterMovement : MonoBehaviour
         Vector2 joystickPosition = new Vector2(joystickHandle.localPosition.x, joystickHandle.localPosition.y);
         Vector2 normalizedPosition = joystickPosition.normalized;
         characterRB.velocity = normalizedPosition * characterSpeed;
-        Debug.Log(normalizedPosition);
     }
 }
