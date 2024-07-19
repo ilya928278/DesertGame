@@ -22,6 +22,5 @@ public class followPlayer : MonoBehaviour
             Vector3 newPosition = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z), followSpeedOverDistance.Evaluate(distance) * Time.deltaTime);
             transform.position = newPosition;
         }
-        Debug.Log(distance);
     }
 }
