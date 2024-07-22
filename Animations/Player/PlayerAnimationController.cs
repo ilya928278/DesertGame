@@ -30,7 +30,6 @@ public class PlayerAnimationController : MonoBehaviour
         Vector2 normalizedPosition = joystickPosition.normalized;
 
         State newState = GetJoystickDirection(normalizedPosition);
-        Debug.Log(newState);
 
         if (newState != currentState)
         {
