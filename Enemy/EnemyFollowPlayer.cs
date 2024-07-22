@@ -40,7 +40,6 @@ public class EnemyFollowPlayer : MonoBehaviour
         if (Mathf.Abs(distanceToPlayer) > enemyParameters.chasingDistance)
         {
             state = State.patrol;
-            agent.ResetPath();
             agent.speed = enemyParameters.patrolSpeed;
         }
 
