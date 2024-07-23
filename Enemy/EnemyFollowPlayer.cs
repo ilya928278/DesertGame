@@ -43,11 +43,7 @@ public class EnemyFollowPlayer : MonoBehaviour
             agent.speed = enemyParameters.patrolSpeed;
         }
 
-        if (state == State.idle)
-        {
-
-        }
-        else if (state == State.chase)
+        if (state == State.chase)
         {
             agent.destination = player.transform.position;
         }
@@ -71,11 +67,6 @@ public class EnemyFollowPlayer : MonoBehaviour
             Debug.Log(agent.destination);
             Debug.Log($"agent.remainingDistance {agent.remainingDistance}\nagent.stoppingDistance {agent.stoppingDistance}");
         }
-    }
-
-    void CheckDistanceToPlayer()
-    {
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
