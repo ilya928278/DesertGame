@@ -6,9 +6,20 @@ public class UIInventoryPage : MonoBehaviour
 {
     [SerializeField] private UIInventoryItem itemPrefab;
     [SerializeField] private RectTransform contentPanel;
+    [SerializeField] private UIInventoryDescription itemDescription;
 
     List<UIInventoryItem> listOfUIItems = new List<UIInventoryItem>();
 
+    public Sprite image;
+    public int quantity;
+    public string title; 
+    public string description;
+
+    private void Awake()
+    {
+        Hide();
+        itemDescription.ResetDescription();
+    }
     public void InitializeInventoryUI(int inventorysize)
     {
         for (int i = 0; i < inventorysize; i++)
@@ -16,6 +27,7 @@ public class UIInventoryPage : MonoBehaviour
             UIInventoryItem uiItem = 
                 Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
             uiItem.transform.SetParent(contentPanel);
+
             listOfUIItems.Add(uiItem);
 
             uiItem.OnItemClicked += HandleItemSelection;
@@ -42,12 +54,15 @@ public class UIInventoryPage : MonoBehaviour
 
     private void HandleItemSelection(UIInventoryItem obj)
     {
-
+        itemDescription.SetDescription(image, title, description);
+        listOfUIItems[0].Select();
     }
 
     public void Show()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        itemDescription.ResetDescription();
+        listOfUIItems[0].SetData(image, quantity);
     }
 
     public void Hide()

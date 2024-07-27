@@ -16,5 +16,6 @@ public class InventoryController : MonoBehaviour
     public void OnClick()
     {
         inventoryUI.gameObject.SetActive(!inventoryUI.gameObject.activeSelf);
+        inventoryUI.Show();
     }
 }
