@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.EventSystems;
 
-public class UIInventoryItem : MonoBehaviour
+public class UIInventoryItem : MonoBehaviour, IPointerClickHandler,
+    IBeginDragHandler, IEndDragHandler, IDropHandler, IDragHandler
 {
     [SerializeField]
     private Image itemImage;
@@ -50,27 +52,32 @@ public class UIInventoryItem : MonoBehaviour
         borderImage.enabled = true;
     }
 
-    public void OnBeginDrag()
+    public void OnPointerClick(PointerEventData pointerData)
+    {
+        if (empty)
+            return;
+        OnItemClicked?.Invoke(this);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        OnItemEndDrag?.Invoke(this);
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
         if (empty)
             return;
         OnItemBeginDrag?.Invoke(this);
     }
 
-    public void OnDrop()
+    public void OnDrop(PointerEventData eventData)
     {
         OnItemDroppedOn?.Invoke(this);
     }
 
-    public void OnEndDrag()
+    public void OnDrag(PointerEventData eventData)
     {
-        OnItemEndDrag?.Invoke(this);
-    }
 
-    public void OnClick()
-    {
-        if (empty)
-            return;
-        OnItemClicked?.Invoke(this);
     }
 }
